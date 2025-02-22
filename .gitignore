@@ -172,3 +172,6 @@ cython_debug/
 
 # Personal identifiers
 *.env
+
+# mac hidden file
+.DS_Store
