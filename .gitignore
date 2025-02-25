@@ -175,3 +175,7 @@ cython_debug/
 
 # mac hidden file
 .DS_Store
+
+# hid heavy file json and csv
+IMDB_reviews.json
+IMDB_reviews.csv
