@@ -6,7 +6,7 @@ def get_IMDB_rating(ratings):
 
     for rating in ratings:
         if rating["Source"] == "Internet Movie Database":
-            imdb_rating = rating["Value"]#.replace('/10', '')
+            imdb_rating = rating["Value"].replace('/10', '')
             break
 
     return imdb_rating if imdb_rating else "N/A"
@@ -40,6 +40,7 @@ def add_movie_ratings(movies_df):
             imdb_ratings.append("Error")
 
     movies_df["imdb_rating"] = imdb_ratings
+    movies_df["imdb_rating"] = movies_df["imdb_rating"].astype(float)
     return movies_df
 
 

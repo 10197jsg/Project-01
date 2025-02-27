@@ -12,10 +12,13 @@ def format_reviews_data():
     # Rename columns for clarity
     movies_grouped.columns = ['not_spoiled_reviews', 'spoiled_reviews']
 
+    # Calculate the total reviews for each movie
+    movies_grouped['total_reviews'] = movies_grouped['not_spoiled_reviews'] + movies_grouped['spoiled_reviews']
+
     # Reset index to convert 'movie_id' into a column
     movies_grouped = movies_grouped.reset_index()
 
-    # Select only the columns 'movie_id' and 'spoiled_reviews'
-    result_df = movies_grouped[['movie_id', 'spoiled_reviews']]
+    # Select only the columns 'movie_id', 'spoiled_reviews', and 'total_reviews'
+    result_df = movies_grouped[['movie_id', 'spoiled_reviews', 'total_reviews']]
 
     return result_df
