@@ -3,7 +3,7 @@ import pandas as pd
 def format_reviews_data():
     
     # Define path to CSV file
-    csv_reviews = 'IMDB_reviews.csv'
+    csv_reviews = '../data/IMDB_reviews.csv'
     df_reviews = pd.read_csv(csv_reviews)
 
     # Group by 'movie_id' and 'is_spoiler', then count the reviews
@@ -21,4 +21,11 @@ def format_reviews_data():
     # Select only the columns 'movie_id', 'spoiled_reviews', and 'total_reviews'
     result_df = movies_grouped[['movie_id', 'spoiled_reviews', 'total_reviews']]
 
-    return result_df
+    # Sort by total reviews in descending order
+    result_df = movies_grouped.sort_values(by='total_reviews', ascending=False)
+
+    # reviews % (= spoiled reviews count / total reviews count)
+    result_df_copy = result_df.copy()  # Create a copy of the original DataFrame
+    result_df_copy['spoiled_percentage'] = (result_df_copy['spoiled_reviews'] / result_df_copy['total_reviews']) * 100
+
+    return result_df_copy
