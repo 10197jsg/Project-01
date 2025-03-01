@@ -13,9 +13,9 @@ def get_IMDB_rating(ratings):
 
 
 
-def add_movie_ratings(movies_df):
+def add_movie_ratings(movies_old):
 
-    movies_df = movies_df.copy()
+    movies_df = movies_old.copy()
 
     imdb_ratings = []
 
@@ -34,12 +34,14 @@ def add_movie_ratings(movies_df):
             data = response.json()
             ratings = data.get("Ratings", [])
             imdb_rating = get_IMDB_rating(ratings)
+            print('el rating...', imdb_rating)
             imdb_ratings.append(imdb_rating)
         else:
             print(f"Error para la película {movie_id}: {response.status_code}")
             imdb_ratings.append("Error")
 
     movies_df["imdb_rating"] = imdb_ratings
+
     movies_df["imdb_rating"] = movies_df["imdb_rating"].astype(float)
     return movies_df
 
