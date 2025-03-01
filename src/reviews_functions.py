@@ -21,11 +21,11 @@ def format_reviews_data():
     # Select only the columns 'movie_id', 'spoiled_reviews', and 'total_reviews'
     result_df = movies_grouped[['movie_id', 'spoiled_reviews', 'total_reviews']]
 
-    # Sort by total reviews in descending order
+    # Sort by 'total reviews' in descending order
     result_df = movies_grouped.sort_values(by='total_reviews', ascending=False)
 
-    # reviews % (= spoiled reviews count / total reviews count)
-    result_df_copy = result_df.copy()  # Create a copy of the original DataFrame
+    # Calculate 'spoiled reviews' percentage
+    result_df_copy = result_df.copy()
     result_df_copy['spoiled_percentage'] = (result_df_copy['spoiled_reviews'] / result_df_copy['total_reviews']) * 100
 
     return result_df_copy

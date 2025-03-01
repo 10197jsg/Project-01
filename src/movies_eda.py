@@ -15,5 +15,6 @@ def print_scatterplot2(movies_w_ratings):
 
 def print_lineplot(movies_w_ratings):
 
+    # Lineplot for numerical variables
     sns.lineplot(x = "imdb_rating", y = "spoiled_percentage", data = movies_w_ratings)
     plt.show()
